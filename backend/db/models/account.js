@@ -14,7 +14,7 @@ const AccountSchema = {
     type: DataTypes.STRING
   },
   interest: {
-    allowNull: false,
+    allowNull: true,
     type: DataTypes.DECIMAL
   },
   managementFee: {

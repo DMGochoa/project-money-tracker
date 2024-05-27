@@ -26,6 +26,13 @@ const TransactionCategorySchema = {
 }
 
 class TransactionCategory extends Model {
+  static associate(models) {
+    this.hasMany(models.Transaction, {
+      as:'transactions',
+      foreignKey: 'categoryId'
+    });
+  }
+
   static config(sequelize) {
     return {
       sequelize,
