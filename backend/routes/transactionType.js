@@ -4,6 +4,7 @@ const TransactionTypeService = require('../services/transactionType');
 const validatorHandler = require('../middlewares/validatorHandler');
 const { createTransactionTypeSchema, updateTransactionTypeSchema } = require('../schemas/transactionType');
 const { getSchema } = require('../schemas/template/getschema');
+const { checkRoles } = require('./../middlewares/authHandler')
 
 const router = express.Router();
 const service = new TransactionTypeService();
@@ -32,6 +33,7 @@ router.get('/:id',
 );
 
 router.post('/',
+  checkRoles('admin', 'user'),
   validatorHandler(createTransactionTypeSchema, 'body'),
   async (req, res, next) => {
     try {

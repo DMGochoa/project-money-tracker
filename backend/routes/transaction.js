@@ -13,7 +13,7 @@ const router = express.Router();
 const service = new TransactionService();
 
 router.get(
-  '/',
+  '/all',
   async (req, res, next) => {
     try {
       const transactions = await service.getAll();
@@ -25,11 +25,11 @@ router.get(
 );
 
 router.get(
-  '/:id',
+  '/',
   async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const transaction = await service.getById(id);
+      const user = req.user;
+      const transaction = await service.getById(user.id);
       res.status(200).json(transaction);
     } catch (error) {
       next(error);
