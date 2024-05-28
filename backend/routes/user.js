@@ -1,5 +1,6 @@
 const express = require('express');
 
+const passport = require('passport');
 const UserService = require('../services/user');
 const validatorHandler = require('../middlewares/validatorHandler');
 const { createUserSchema, updateUserSchema } = require('../schemas/user');
@@ -45,6 +46,7 @@ router.post('/',
 );
 
 router.patch('/:id',
+  passport.authenticate('jwt', { session: false }),
   validatorHandler(getSchema, 'params'),
   validatorHandler(updateUserSchema, 'body'),
   async (req, res, next) => {
