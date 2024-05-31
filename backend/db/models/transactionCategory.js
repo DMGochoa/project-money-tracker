@@ -20,7 +20,7 @@ const TransactionCategorySchema = {
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
-    fiels: 'created_at',
+    field: 'created_at',
     defaultValue: Sequelize.NOW
   },
 }
